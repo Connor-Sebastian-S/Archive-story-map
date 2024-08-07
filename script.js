@@ -7,9 +7,9 @@ $('div#contents').scroll(function() {
 });
 
 const startDate = '1200' + '-01-01';
-    const endDate = '2024' + '-12-31';
-    const initDate = '1700' + '-01-01';
-    var mapCenter = [56.563729541410666, -3.584791427303605];
+const endDate = '2024' + '-12-31';
+const initDate = '1700' + '-01-01';
+var mapCenter = [56.563729541410666, -3.584791427303605];
 
 
 function initMap() {
@@ -18,7 +18,8 @@ function initMap() {
   var map = L.map('map', {
     center: mapCenter,
     zoom: 15,
-    scrollWheelZoom: false
+    scrollWheelZoom: false,
+    zoomControl: false
   });
 
   // This displays a base layer map (other options available)
@@ -27,30 +28,37 @@ function initMap() {
   // }).addTo(map);
 
   var ohmLayer = new L.MapboxGL({
-            attribution: "OpenHistoricalMap",
-            style: OHM_MAP_STYLE,
-            accessToken: "no-token"
-        });
+      attribution: "OpenHistoricalMap",
+      style: OHM_MAP_STYLE,
+      accessToken: "no-token"
+  });
 
   ohmLayer.addTo(map);
 
+  map.dragging.disable();
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  map.boxZoom.disable();
+  map.keyboard.disable();
+
   const tsoptions = {
-            vectorLayer: ohmLayer,
-            vectorSourceName: 'osm',
-            range: [startDate, endDate],
-            date: initDate,
-            stepInterval: 1,
-            stepAmount: '1year',
-            onDateChange: function (date) {
-                dateChange(date);
-            },
-            onRangeChange: function (range) {},
-            onReady: function () {document.querySelector('.leaflet-ohm-timeslider-datereadout span[data-timeslider="datereadout"]').textContent = initDate;  },
-            autoplayIsRunning: function () {},
-            autoplayPause: function () {},
-            autoplayStart: function () {},
-            autoplayStartBackwards: function () {}
-        };
+      vectorLayer: ohmLayer,
+      vectorSourceName: 'osm',
+      range: [startDate, endDate],
+      date: initDate,
+      stepInterval: 1,
+      stepAmount: '1year',
+      onDateChange: function (date) {
+          dateChange(date);
+      },
+      onRangeChange: function (range) {},
+      onReady: function () {document.querySelector('.leaflet-ohm-timeslider-datereadout span[data-timeslider="datereadout"]').textContent = initDate;  },
+      autoplayIsRunning: function () {},
+      autoplayPause: function () {},
+      autoplayStart: function () {},
+      autoplayStartBackwards: function () {}
+  };
 
   TIMESLIDER = new L.Control.OHMTimeSlider(tsoptions).addTo(map);
 
