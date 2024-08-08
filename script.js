@@ -70,7 +70,7 @@ function initMap() {
       onEachFeature: function (feature, layer) {
         var numericMarker = L.ExtraMarkers.icon({
           icon: 'fa-number',
-          number: feature.properties['id'],
+          //number: feature.properties['id'],
           markerColor: 'blue'
         });
         layer.setIcon(numericMarker);
