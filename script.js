@@ -68,56 +68,57 @@ function initMap() {
 
     var geojson = L.geoJson(data, {
       onEachFeature: function (feature, layer) {
-        (function(layer, properties) {
-          var numericMarker = L.ExtraMarkers.icon({
-            icon: 'fa-number',
-            number: feature.properties['id'],
-            markerColor: 'blue'
-          });
-          layer.setIcon(numericMarker);
+        var numericMarker = L.ExtraMarkers.icon({
+          icon: 'fa-number',
+          number: feature.properties['id'],
+          markerColor: 'blue'
+        });
+        layer.setIcon(numericMarker);
 
-          var containerSource = $("#container-template").html();
-          var containerTemplate = Handlebars.compile(containerSource);
+        var containerSource = $("#container-template").html();
+        var containerTemplate = Handlebars.compile(containerSource);
 
-          var output = {
-            "containerId": 'container' + feature.properties['id'],
-            "chapter": feature.properties['chapter'],
-            "imgSrc": feature.properties['image'],
-            "srcHref": feature.properties['source-link'],
-            "srcText": feature.properties['source-credit'],
-            "description": feature.properties['description'],
-            "year": feature.properties['year']
-          }
-          var html = containerTemplate(output);
-          $('#contents').append(html);
+        var output = {
+          "containerId": 'container' + feature.properties['id'],
+          "chapter": feature.properties['chapter'],
+          "imgSrc": feature.properties['image'],
+          "srcHref": feature.properties['source-link'],
+          "srcText": feature.properties['source-credit'],
+          "description": feature.properties['description'],
+          "year": feature.properties['year']
+        };
+        var html = containerTemplate(output);
+        $('#contents').append(html);
 
-          var i;
-          var areaTop = -100;
-          var areaBottom = 0;
-
-          // Calculating total height of blocks above active
-          for (i = 1; i < feature.properties['id']; i++) {
-            areaTop += $('div#container' + i).height() + imageContainerMargin;
-          }
-
-          areaBottom = areaTop + $('div#container' + feature.properties['id']).height();
-
-          $('div#contents').scroll(function() {
-            if ($(this).scrollTop() >= areaTop && $(this).scrollTop() < areaBottom) {
-              $('.image-container').removeClass("inFocus").addClass("outFocus");
-              $('div#container' + feature.properties['year']).addClass("inFocus").removeClass("outFocus");
-
-              map.flyTo([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], feature.properties['zoom']);
-              TIMESLIDER.setDate(feature.properties['year']);
-            }
-          });
-
-          layer.on('click', function() {
-            $("div#contents").animate({scrollTop: areaTop + "px"});
-          });
-
-        })(layer, feature.properties);
+        layer.on('click', function() {
+          // Scroll to the correct position when the marker is clicked
+          var targetDiv = $('div#container' + feature.properties['id']);
+          var scrollPos = targetDiv.position().top + $('#contents').scrollTop();
+          $("div#contents").animate({scrollTop: scrollPos + "px"});
+        });
       }
+    });
+
+    // Handling focus based on scrolling
+    $('div#contents').scroll(function() {
+      var scrollPos = $(this).scrollTop();
+
+      $('div.image-container').each(function(index) {
+        var containerId = $(this).attr('id');
+        var featureId = containerId.replace('container', '');
+        var feature = data.features.find(f => f.properties.id == featureId);
+
+        var areaTop = $(this).position().top + scrollPos - $(this).height() / 2;
+        var areaBottom = areaTop + $(this).height();
+
+        if (scrollPos >= areaTop && scrollPos < areaBottom) {
+          $('.image-container').removeClass("inFocus").addClass("outFocus");
+          $(this).addClass("inFocus").removeClass("outFocus");
+
+          map.flyTo([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], feature.properties.zoom);
+          TIMESLIDER.setDate(feature.properties.year);
+        }
+      });
     });
 
     $('div#container1').addClass("inFocus");
@@ -126,6 +127,7 @@ function initMap() {
     geojson.addTo(map);
   });
 }
+
 
 
 initMap();
