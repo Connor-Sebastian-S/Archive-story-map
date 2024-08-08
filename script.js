@@ -25,7 +25,9 @@ function initMap() {
   var ohmLayer = new L.MapboxGL({
       attribution: "OpenHistoricalMap",
       style: OHM_MAP_STYLE,
-      accessToken: "no-token"
+      accessToken: "no-token",
+      useCache: true,
+  crossOrigin: true
   });
 
   ohmLayer.addTo(map);
