@@ -70,7 +70,7 @@ function initMap() {
   // This loads the GeoJSON map data file from a local folder
   $.getJSON('map.geojson', function(data) {
 
-    data.features.sort(function(a, b) {
+    var data = data.features.sort(function(a, b) {
       return a.properties['year'] - b.properties['year'];
     });
 
