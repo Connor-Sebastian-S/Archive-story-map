@@ -36,17 +36,17 @@
         "type": "Feature",
         "properties": {
             "id": 2,
-            "chapter": "The Cross, Monument To The 6th Duke Of Atholl - 1866",
+            "chapter": "Dunkeld Cathedral - 1450",
             "zoom": 18,
-            "image": "img/cross.jpg",
+            "image": "img/cathedral.jpg",
             "source-credit": "",
             "source-link": "",
-            "description": "Dunkeld market cross (colloquially Dunkeld mercat cross, also known as the Atholl Memorial Fountain), is a listed structure in the care of the National Trust for Scotland. It was designed by Charles Sandeman Robertson and erected in 1866 as a monument to the George Murray, 6th Duke of Atholl. It replaced a cross that was about 20 feet (6.1 m) high, with four iron jougs attached to it.",
-            "year": "1866-01-01"
+            "description": "There was a Pictish monastery on the site before the cathedral was built, and the site remains in ecclesiastical use today. Kenneth MacAlpin had relics of St Columba brought to a specially constructed church at Dunkeld in 849. Repeated Viking raids had made their original home of Iona unsafe. This early church is long gone, but there are carved stones which attest to this early activity. These include the 'Apostles Stone', dating to the 800s. Construction of Dunkeld Cathedral took about 250 years, from the mid-1200s to the late 1400s, though little work was carried out in the 1300s.",
+            "year": "1450-01-01"
         },
         "geometry": {
             "type": "Point",
-            "coordinates": [-3.5868, 56.56558]
+            "coordinates": [-3.58967, 56.56481]
         }
     }]
 }
