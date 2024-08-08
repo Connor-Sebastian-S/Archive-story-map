@@ -65,33 +65,30 @@ body {
 #map {
     position: absolute;
     left: 0;
-    width: 100vw;
-    height: 70vh;
+    width: 70vw;
+    height: 100vh;
     z-index: 1;
 }
 
 #narration {
     position: absolute;
-    width: 100vw; /* Full width at the bottom */
-    height: 30vh; /* Height reserved for narration */
-    bottom: 0;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    overflow-y: hidden; /* Disable vertical scrolling */
+    width: 30vw;
+    min-width: 300px;
+    right: 0px;
+    height: 100vh;
+    overflow: auto;
     z-index: 99;
-    background: rgba(254, 254, 254, 0.9); /* Slight opacity for readability */
-    white-space: nowrap; /* Prevent line breaks */
+    background: rgba(254,254,254, 1.0); /* to apply opacity background only. */
 }
 
+
 #contents {
-    display: flex; /* Use flexbox for horizontal layout */
-    flex-direction: row; /* Arrange items horizontally */
-    align-items: flex-start; /* Align items at the top */
-    height: 100%;
-    width: max-content; /* Adjust width to fit all content */
-    overflow-x: auto; /* Horizontal scroll */
-    overflow-y: hidden; /* Disable vertical scroll */
     padding: 0%;
-    margin-top: 0px;
+    width: 100%;
+    margin-top: 0px; /*Adjust if Title header needs more space */
+    height: 100%; /* Adjust to fit max Description length, one setting for all; alternative is 100% */
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #contents .space-at-the-top {
@@ -100,12 +97,11 @@ body {
 }
 
 #contents .space-at-the-bottom {
-    height: 100px; /* Reduced height since narration is at the bottom */
+    height: 1000px; /* use a large number to ensure the last item is scrollable */
     margin: 0px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 70px;
 }
-
 
 #chapter {
     position: absolute;
@@ -133,12 +129,11 @@ h3 {
 }
 
 .image-container {
-    flex: 0 0 auto; /* Ensure containers don't shrink or grow */
-    margin: 10px; /* Adjust margins for spacing */
-    padding: 10px;
+    /* margin + padding = imageContainerMargin in script.js */
+    /* Important for scrolling! */
+    margin: 50px 0 0 0;
+    padding: 20px 0 0 0;
     text-align: center;
-    width: 250px; /* Adjust width of each chapter */
-    box-sizing: border-box;
 }
 
 .image-container img {
@@ -156,10 +151,10 @@ h3 {
 }
 
 .img-holder {
-    height: 150px; /* Adjust height for images */
-    max-height: 150px;
+    margin: 0px;
+    height: 200px;
+    max-height: 200px;
     width: 100%;
-    margin-bottom: 10px;
 }
 
 .title-text {
@@ -180,9 +175,10 @@ h3 {
 }
 
 .description {
+    margin: 20px;
     text-align: left;
     font-size: 11pt;
-    padding: 10px;
+    padding: 20px;
 }
 
 .inFocus {
@@ -191,7 +187,7 @@ h3 {
 }
 
 .outFocus {
-    opacity: 0.5;
+    opacity: 0.3;
     background-color: white;
 }
 
