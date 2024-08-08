@@ -75,19 +75,23 @@ body {
     width: 100vw; /* Full width at the bottom */
     height: 30vh; /* Height reserved for narration */
     bottom: 0;
-    overflow-y: auto;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    overflow-y: hidden; /* Disable vertical scrolling */
     z-index: 99;
     background: rgba(254, 254, 254, 0.9); /* Slight opacity for readability */
+    white-space: nowrap; /* Prevent line breaks */
 }
 
-
 #contents {
-    padding: 0%;
-    width: 100%;
-    margin-top: 0px;
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-direction: row; /* Arrange items horizontally */
+    align-items: flex-start; /* Align items at the top */
     height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    width: max-content; /* Adjust width to fit all content */
+    overflow-x: auto; /* Horizontal scroll */
+    overflow-y: hidden; /* Disable vertical scroll */
+    padding: 0%;
+    margin-top: 0px;
 }
 
 #contents .space-at-the-top {
@@ -129,9 +133,12 @@ h3 {
 }
 
 .image-container {
-    margin: 20px 0 0 0;
-    padding: 10px 0 0 0;
+    flex: 0 0 auto; /* Ensure containers don't shrink or grow */
+    margin: 10px; /* Adjust margins for spacing */
+    padding: 10px;
     text-align: center;
+    width: 250px; /* Adjust width of each chapter */
+    box-sizing: border-box;
 }
 
 .image-container img {
@@ -149,10 +156,10 @@ h3 {
 }
 
 .img-holder {
-    margin: 0px;
-    height: 200px;
-    max-height: 200px;
+    height: 150px; /* Adjust height for images */
+    max-height: 150px;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .title-text {
@@ -173,10 +180,9 @@ h3 {
 }
 
 .description {
-    margin: 20px;
     text-align: left;
     font-size: 11pt;
-    padding: 20px;
+    padding: 10px;
 }
 
 .inFocus {
@@ -185,7 +191,7 @@ h3 {
 }
 
 .outFocus {
-    opacity: 0.3;
+    opacity: 0.5;
     background-color: white;
 }
 
