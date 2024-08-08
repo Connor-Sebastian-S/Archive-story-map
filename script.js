@@ -115,10 +115,7 @@ function initMap() {
           $('.image-container').removeClass("inFocus").addClass("outFocus");
           $(this).addClass("inFocus").removeClass("outFocus");
 
-          map.flyTo([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], feature.properties.zoom{
-        animate: true,
-        duration: 3.5
-});
+          map.flyTo([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], feature.properties.zoom);
           TIMESLIDER.setDate(feature.properties.year);
         }
       });
