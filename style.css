@@ -72,13 +72,12 @@ body {
 
 #narration {
     position: absolute;
-    width: 30vw;
-    min-width: 300px;
-    right: 0px;
-    height: 100vh;
-    overflow: auto;
+    width: 100vw; /* Full width at the bottom */
+    height: 30vh; /* Height reserved for narration */
+    bottom: 0;
+    overflow-y: auto;
     z-index: 99;
-    background: rgba(254,254,254, 1.0); /* to apply opacity background only. */
+    background: rgba(254, 254, 254, 0.9); /* Slight opacity for readability */
 }
 
 
