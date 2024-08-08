@@ -91,17 +91,16 @@ function initMap() {
           var html = containerTemplate(output);
           $('#contents').append(html);
 
+          var i;
           var areaTop = -100;
           var areaBottom = 0;
 
-          // Recalculate areaTop and areaBottom based on the current order of elements
-          $('div#contents').children().each(function(index, element) {
-            if (element.id === 'container' + feature.properties['id']) {
-              areaBottom = areaTop + $(element).height();
-              return false; // break loop
-            }
-            areaTop += $(element).height() + imageContainerMargin;
-          });
+          // Calculating total height of blocks above active
+          for (i = 1; i < feature.properties['id']; i++) {
+            areaTop += $('div#container' + i).height() + imageContainerMargin;
+          }
+
+          areaBottom = areaTop + $('div#container' + feature.properties['id']).height();
 
           $('div#contents').scroll(function() {
             if ($(this).scrollTop() >= areaTop && $(this).scrollTop() < areaBottom) {
