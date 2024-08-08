@@ -84,8 +84,8 @@ body {
 #contents {
     padding: 0%;
     width: 100%;
-    margin-top: 0px; /*Adjust if Title header needs more space */
-    height: 100%; /* Adjust to fit max Description length, one setting for all; alternative is 100% */
+    margin-top: 0px;
+    height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -96,11 +96,12 @@ body {
 }
 
 #contents .space-at-the-bottom {
-    height: 1000px; /* use a large number to ensure the last item is scrollable */
+    height: 100px; /* Reduced height since narration is at the bottom */
     margin: 0px;
     text-align: center;
-    padding-top: 70px;
+    padding-top: 20px;
 }
+
 
 #chapter {
     position: absolute;
@@ -128,10 +129,8 @@ h3 {
 }
 
 .image-container {
-    /* margin + padding = imageContainerMargin in script.js */
-    /* Important for scrolling! */
-    margin: 50px 0 0 0;
-    padding: 20px 0 0 0;
+    margin: 20px 0 0 0;
+    padding: 10px 0 0 0;
     text-align: center;
 }
 
