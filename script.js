@@ -105,7 +105,7 @@ function initMap() {
           $('div#contents').scroll(function() {
             if ($(this).scrollTop() >= areaTop && $(this).scrollTop() < areaBottom) {
               $('.image-container').removeClass("inFocus").addClass("outFocus");
-              $('div#container' + feature.properties['id']).addClass("inFocus").removeClass("outFocus");
+              $('div#container' + feature.properties['year']).addClass("inFocus").removeClass("outFocus");
 
               map.flyTo([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], feature.properties['zoom']);
               TIMESLIDER.setDate(feature.properties['year']);
